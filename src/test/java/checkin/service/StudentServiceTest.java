@@ -93,12 +93,11 @@ public class StudentServiceTest {
     public void testRemove(){
         final Student rmvStudent = students.get(0);
         doAnswer(invocation -> {
-            Student student = invocation.getArgument(0);
-            assertTrue(studentService.getStudentById(student.getId()).equals(null));
+            Integer arg0 = invocation.getArgument(0);
+            assertTrue(studentService.getStudentById(arg0)==null);
             return null;
         }).when(studentService).removeStudent(anyInt());
-        // Does not working. I couldn't solve this, but I shall.
-        //studentService.removeStudent(rmvStudent.getId());
+        studentService.removeStudent(rmvStudent.getId());
     }
 
     @Test
@@ -106,12 +105,12 @@ public class StudentServiceTest {
         Student getStudent = students.get(0);
 
         doAnswer(invocation -> {
-            Student student = invocation.getArgument(0);
-            assertTrue(studentService.getStudentById(student.getId()).equals(student));
+            Integer arg0 = invocation.getArgument(0);
+            Integer id = getStudent.getId();
+            assertTrue(id.equals(arg0));
             return null;
         }).when(studentService).getStudentById(anyInt());
-        // Does not working. I couldn't solve this, but I shall.
-        //studentService.getStudentById(getStudent.getId());
+        studentService.getStudentById(getStudent.getId());
     }
 }
 

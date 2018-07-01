@@ -18,6 +18,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -65,7 +67,6 @@ public class StudentControllerTest {
                 .andExpect(status().isFound())
                 .andExpect(header().string("/students/add", (String) null))
                 .andExpect(redirectedUrl("/students"));
-                //Wanted to continue, but could not
                 //.andExpect(model().attribute("student", hasProperty("firstName", is("Ivan"))));
 
     }
